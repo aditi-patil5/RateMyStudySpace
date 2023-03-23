@@ -9,6 +9,8 @@ public class StudySpaceModel {
     private String location;
     private float rating;
 
+    private int imageMain;
+
     public void setName(String name) {
         this.name = name;
     }
@@ -29,14 +31,23 @@ public class StudySpaceModel {
         return location;
     }
 
+    public int getImageMain() {
+        return imageMain;
+    }
+
+    public void setImageMain(int imageMain) {
+        this.imageMain = imageMain;
+    }
+
     public float getRating() {
         return rating;
     }
 
-    public StudySpaceModel(String name, String location, float rating){
+    public StudySpaceModel(String name, String location, float rating, int imageMain){
         this.name = name;
         this.location = location;
         this.rating = rating;
+        this.imageMain = imageMain;
     }
 
 

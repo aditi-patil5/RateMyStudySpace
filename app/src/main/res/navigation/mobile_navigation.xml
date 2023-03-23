@@ -21,5 +21,21 @@
         android:id="@+id/navigation_explore"
         android:name="com.example.ratemystudyspace.ui.explore.ExploreFragment"
         android:label="@string/title_explore"
-        tools:layout="@layout/fragment_explore" />
+        tools:layout="@layout/fragment_explore" >
+        <action
+            android:id="@+id/action_navigation_explore_to_spaceOverview"
+            android:label="@string/title_explore"
+            app:destination="@id/spaceOverview" />
+    </fragment>
+    <fragment
+        android:id="@+id/spaceOverview"
+        android:name="com.example.ratemystudyspace.ui.space.SpaceFragment"
+        android:label="fragment_space_overview"
+        tools:layout="@layout/fragment_space_overview" >
+        <action
+            android:id="@+id/action_spaceOverview_to_navigation_explore2"
+            app:popUpTo="@+id/navigation_explore"
+            app:popUpToInclusive="true"
+            app:destination="@id/navigation_explore" />
+    </fragment>
 </navigation>
