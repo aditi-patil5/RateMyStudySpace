@@ -28,22 +28,22 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+//        final TextView textView = binding.textHome;
+//        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         setOnClickEventForButtons();
 
         return root;
     }
 
     public void setOnClickEventForButtons(){
-        binding.explore_button.setOnClickListener(new View.OnClickListener() {
+        binding.exploreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ((MainActivity) getActivity()).changeBottomNavigationTab(new ExploreFragment());
             }
         });
 
-        binding.favorites_button.setOnClickListener(new View.OnClickListener() {
+        binding.favoritesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ((MainActivity) getActivity()).changeBottomNavigationTab(new FavoritesFragment());
