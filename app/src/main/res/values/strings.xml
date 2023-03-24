@@ -4,4 +4,23 @@
     <string name="title_home">Home</string>
     <string name="title_favorites">Favorites</string>
     <string name="title_explore">Explore</string>
+
+    <string-array name="name_list">
+        <item>Taylor Center</item>
+        <item>Wise Owl Cafe</item>
+        <item>Toaster</item>
+    </string-array>
+
+    <string-array name="location_list">
+        <item>Lind Hall, MN 55455</item>
+        <item>Walter Library, MN 55345</item>
+        <item>Walter Library, MN 55345</item>
+    </string-array>
+
+    <string-array name="rating_list">
+        <item>4.5</item>
+        <item>3.5</item>
+        <item>2.5</item>
+    </string-array>
+
 </resources>
