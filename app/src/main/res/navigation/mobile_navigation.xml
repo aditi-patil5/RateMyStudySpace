@@ -15,7 +15,11 @@
         android:id="@+id/navigation_favorites"
         android:name="com.example.ratemystudyspace.ui.favorites.FavoritesFragment"
         android:label="@string/title_favorites"
-        tools:layout="@layout/fragment_favorites" />
+        tools:layout="@layout/fragment_favorites" >
+        <action
+            android:id="@+id/action_navigation_favorites_to_spaceOverview"
+            app:destination="@id/spaceOverview" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_explore"
@@ -37,5 +41,10 @@
             app:popUpTo="@+id/navigation_explore"
             app:popUpToInclusive="true"
             app:destination="@id/navigation_explore" />
+        <action
+            android:id="@+id/action_spaceOverview_to_navigation_favorites"
+            app:popUpTo="@+id/navigation_explore"
+            app:popUpToInclusive="true"
+            app:destination="@id/navigation_favorites"/>
     </fragment>
 </navigation>
