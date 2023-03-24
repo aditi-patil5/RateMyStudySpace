@@ -25,7 +25,7 @@ import java.util.ArrayList;
 public class ExploreFragment extends Fragment implements RecyclerViewInterface {
 
     private FragmentExploreBinding binding;
-    private ArrayList<StudySpaceModel> studySpaceModels = new ArrayList<>();
+    private ArrayList<StudySpaceModel> studySpaceModels;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -38,7 +38,10 @@ public class ExploreFragment extends Fragment implements RecyclerViewInterface {
         // Set up recycler view and StudySpaceFragment model
         Context context = getContext();
         RecyclerView recyclerViewExplore = binding.recyclerView;
-        setUpStudySpaceModel();
+        if(studySpaceModels == null){
+            studySpaceModels = new ArrayList<>();
+            setUpStudySpaceModel();
+        }
         StudySpaceAdapter adapterView = new StudySpaceAdapter(context, studySpaceModels, this);
         recyclerViewExplore.setAdapter(adapterView);
         recyclerViewExplore.setLayoutManager(new LinearLayoutManager(context));
