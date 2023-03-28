@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.filter.FilterFragment">
+
+
+    <ScrollView
+        android:layout_width="420dp"
+        android:layout_height="638dp"
+        android:layout_marginBottom="93dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <SearchView
+                android:id="@+id/filter_search"
+                android:layout_width="364dp"
+                android:layout_height="wrap_content"
+                android:iconifiedByDefault="false"
+                android:queryHint="search study space" />
+
+            <TextView
+                android:id="@+id/Amenities"
+                android:layout_width="379dp"
+                android:layout_height="28dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:text="Amenities" />
+
+            <CheckBox
+                android:id="@+id/filter_amenity_option1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Natural Light" />
+
+            <CheckBox
+                android:id="@+id/filter_amenity_option2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Outlets" />
+
+            <CheckBox
+                android:id="@+id/filter_amenity_option3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Whiteboards" />
+
+            <TextView
+                android:id="@+id/Rating"
+                android:layout_width="379dp"
+                android:layout_height="28dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:text="Rating" />
+
+            <RatingBar
+                android:id="@+id/rating_bar"
+                style="?android:attr/ratingBarStyleIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:numStars="5"
+                android:scaleX="1"
+                android:scaleY="1" />
+
+            <TextView
+                android:id="@+id/Noiselevel"
+                android:layout_width="379dp"
+                android:layout_height="28dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:text="Noise Level" />
+
+
+            <CheckBox
+                android:id="@+id/filter_noise_option1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Loud" />
+
+            <CheckBox
+                android:id="@+id/filter_noise_option2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Medium" />
+
+            <CheckBox
+                android:id="@+id/filter_noise_option3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quiet" />
+
+            <CheckBox
+                android:id="@+id/filter_noise_option4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Silent" />
+
+            <TextView
+                android:id="@+id/Typestudy"
+                android:layout_width="379dp"
+                android:layout_height="28dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:text="Type of Study" />
+
+
+            <CheckBox
+                android:id="@+id/filter_typestudy_option1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Group Study" />
+
+            <CheckBox
+                android:id="@+id/filter_typestudy_option2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Individual Study" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/filter_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="50dp"
+        android:text="Filter"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
