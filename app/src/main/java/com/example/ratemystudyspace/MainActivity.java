@@ -5,7 +5,9 @@ import android.os.Bundle;
 import com.example.ratemystudyspace.databinding.ActivityMainBinding;
 import com.example.ratemystudyspace.ui.explore.ExploreFragment;
 import com.example.ratemystudyspace.ui.favorites.FavoritesFragment;
+import com.example.ratemystudyspace.ui.filter.FilterFragment;
 import com.example.ratemystudyspace.ui.home.HomeFragment;
+import com.example.ratemystudyspace.ui.review.ReviewFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_favorites, R.id.navigation_explore)
+                R.id.navigation_home, R.id.navigation_favorites, R.id.navigation_explore, R.id.navigation_review, R.id.navigation_filter)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
@@ -45,6 +47,16 @@ public class MainActivity extends AppCompatActivity {
         else if(objType instanceof FavoritesFragment){
             navView.setSelectedItemId(R.id.navigation_favorites);
         }
+        // new
+        else if(objType instanceof ReviewFragment){
+            navView.setSelectedItemId(R.id.navigation_review);
+        }
+        else if(objType instanceof FilterFragment){
+
+            System.out.println("Hello");
+            navView.setSelectedItemId(R.id.navigation_filter);
+        }
+
         else if(objType instanceof HomeFragment){
             System.out.println("Already on Homepage ");
         }

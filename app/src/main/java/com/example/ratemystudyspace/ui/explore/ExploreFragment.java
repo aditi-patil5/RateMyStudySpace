@@ -14,11 +14,13 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ratemystudyspace.MainActivity;
 import com.example.ratemystudyspace.R;
 import com.example.ratemystudyspace.recyclerview.RecyclerViewInterface;
 import com.example.ratemystudyspace.recyclerview.StudySpaceAdapter;
 import com.example.ratemystudyspace.StudySpaceModel;
 import com.example.ratemystudyspace.databinding.FragmentExploreBinding;
+import com.example.ratemystudyspace.ui.filter.FilterFragment;
 
 import java.util.ArrayList;
 
@@ -48,6 +50,7 @@ public class ExploreFragment extends Fragment implements RecyclerViewInterface {
 
 //        final TextView textView = binding.textNotifications;
 //        exploreViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        setOnClickEventForButtons();
         return root;
     }
 
@@ -75,6 +78,14 @@ public class ExploreFragment extends Fragment implements RecyclerViewInterface {
         arguments.putString("location", model.getLocation());
         Navigation.findNavController(getView()).navigate(R.id.action_navigation_explore_to_spaceOverview,arguments);
 
+    }
+    public void setOnClickEventForButtons(){
+        binding.gotoFilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((MainActivity) getActivity()).changeBottomNavigationTab(new FilterFragment());
+            }
+        });
     }
 
     @Override

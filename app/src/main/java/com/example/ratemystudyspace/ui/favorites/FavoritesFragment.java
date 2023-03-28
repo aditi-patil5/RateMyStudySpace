@@ -14,11 +14,13 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ratemystudyspace.MainActivity;
 import com.example.ratemystudyspace.R;
 import com.example.ratemystudyspace.StudySpaceModel;
 import com.example.ratemystudyspace.databinding.FragmentFavoritesBinding;
 import com.example.ratemystudyspace.recyclerview.RecyclerViewInterface;
 import com.example.ratemystudyspace.recyclerview.StudySpaceAdapter;
+import com.example.ratemystudyspace.ui.explore.ExploreFragment;
 
 import java.util.ArrayList;
 
@@ -49,6 +51,7 @@ public class FavoritesFragment extends Fragment implements RecyclerViewInterface
         recyclerViewFavorites.setAdapter(adapterView);
         recyclerViewFavorites.setLayoutManager(new LinearLayoutManager(context));
 
+        setOnClickEventForButtons();
         return root;
     }
 
@@ -76,6 +79,15 @@ public class FavoritesFragment extends Fragment implements RecyclerViewInterface
         arguments.putString("location", model.getLocation());
         Navigation.findNavController(getView()).navigate(R.id.action_navigation_favorites_to_spaceOverview,arguments);
 
+    }
+
+    public void setOnClickEventForButtons(){
+        binding.addFavorites.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((MainActivity) getActivity()).changeBottomNavigationTab(new ExploreFragment());
+            }
+        });
     }
 
     @Override
