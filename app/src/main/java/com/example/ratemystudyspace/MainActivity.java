@@ -3,6 +3,7 @@ package com.example.ratemystudyspace;
 import android.os.Bundle;
 
 import com.example.ratemystudyspace.databinding.ActivityMainBinding;
+import com.example.ratemystudyspace.recyclerview.StudySpaceAdapter;
 import com.example.ratemystudyspace.ui.explore.ExploreFragment;
 import com.example.ratemystudyspace.ui.favorites.FavoritesFragment;
 import com.example.ratemystudyspace.ui.filter.FilterFragment;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private BottomNavigationView navView;
 
+    private StudySpaceAdapter exploreAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,5 +71,13 @@ public class MainActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp(){
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         return navController.navigateUp();
+    }
+
+    public void setExploreAdapter(StudySpaceAdapter exploreAdapter){
+        this.exploreAdapter = exploreAdapter;
+    }
+
+    public StudySpaceAdapter getExploreAdapter(){
+        return this.exploreAdapter;
     }
 }

@@ -67,6 +67,9 @@
         android:name="com.example.ratemystudyspace.ui.filter.FilterFragment"
         android:label="Filter"
         tools:layout="@layout/fragment_filter" >
+        <action
+            android:id="@+id/action_navigation_filter_to_navigation_explore"
+            app:destination="@id/navigation_explore" />
     </fragment>
 
 

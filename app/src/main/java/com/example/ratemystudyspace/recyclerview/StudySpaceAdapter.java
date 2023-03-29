@@ -20,11 +20,6 @@ public class StudySpaceAdapter extends RecyclerView.Adapter<StudySpaceAdapter.My
     protected Context context;
     protected RecyclerViewInterface recyclerViewInterface;
 
-    // Allow the classes that filter the recycler view to change the list element by setting the filtered list
-    public void setStudySpaceModels(ArrayList<StudySpaceModel> studySpaceModels) {
-        this.studySpaceModels = studySpaceModels;
-    }
-
     protected ArrayList<StudySpaceModel> studySpaceModels;
 
     public StudySpaceAdapter(Context context, ArrayList<StudySpaceModel> studySpaceModels, RecyclerViewInterface recyclerViewInterface){
@@ -51,6 +46,17 @@ public class StudySpaceAdapter extends RecyclerView.Adapter<StudySpaceAdapter.My
     @Override
     public int getItemCount() {
         return studySpaceModels.size();
+    }
+
+    // Allow the classes that filter the recycler view to change the list element by setting the filtered list
+    public void setStudySpaceModelList(ArrayList<StudySpaceModel> newStudySpaceModels) {
+        studySpaceModels.clear();
+        studySpaceModels.addAll(newStudySpaceModels);
+        notifyDataSetChanged();
+    }
+
+    public ArrayList<StudySpaceModel> getStudySpaceModelList(){
+        return (ArrayList<StudySpaceModel>) studySpaceModels.clone();  // return a copy of the list
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {

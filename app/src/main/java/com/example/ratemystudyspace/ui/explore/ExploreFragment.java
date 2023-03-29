@@ -1,6 +1,5 @@
 package com.example.ratemystudyspace.ui.explore;
 
-import android.app.ActionBar;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,7 +8,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -46,7 +44,12 @@ public class ExploreFragment extends Fragment implements RecyclerViewInterface {
             studySpaceModels = new ArrayList<>();
             setUpStudySpaceModel();
         }
-        this.adapterView = new StudySpaceAdapter(context, studySpaceModels, this);
+
+        this.adapterView = ((MainActivity) getActivity()).getExploreAdapter();
+        if(this.adapterView == null) {              // if the main activity's adapter is not initialized then initialize it
+            setUpAdapter(context);                  // note: this should be performed only once
+        }
+
         recyclerViewExplore.setAdapter(this.adapterView);
         recyclerViewExplore.setLayoutManager(new LinearLayoutManager(context));
 
@@ -54,6 +57,11 @@ public class ExploreFragment extends Fragment implements RecyclerViewInterface {
 //        exploreViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         setOnClickEventForButtons();
         return root;
+    }
+
+    private void setUpAdapter(Context context){
+        this.adapterView = new StudySpaceAdapter(context, studySpaceModels, this);
+        ((MainActivity) getActivity()).setExploreAdapter(adapterView);
     }
 
     protected void setUpStudySpaceModel(){
@@ -91,7 +99,7 @@ public class ExploreFragment extends Fragment implements RecyclerViewInterface {
     }
 
     public void setFilterdList(ArrayList<StudySpaceModel> filteredList){
-        this.adapterView.setStudySpaceModels(filteredList);
+        this.adapterView.setStudySpaceModelList(filteredList);
     }
 
     @Override

@@ -7,15 +7,20 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.ratemystudyspace.MainActivity;
 import com.example.ratemystudyspace.R;
-import com.example.ratemystudyspace.databinding.FragmentExploreBinding;
+import com.example.ratemystudyspace.StudySpaceModel;
 import com.example.ratemystudyspace.databinding.FragmentFilterBinding;
+import com.example.ratemystudyspace.recyclerview.StudySpaceAdapter;
 import com.example.ratemystudyspace.ui.explore.ExploreViewModel;
+
+import java.util.ArrayList;
 
 public class FilterFragment extends Fragment {
 
@@ -41,12 +46,12 @@ public class FilterFragment extends Fragment {
         binding.filterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                StudySpaceAdapter adapter = ((MainActivity) getActivity()).getExploreAdapter();
+                ArrayList<StudySpaceModel> allItems = adapter.getStudySpaceModelList();
+                ArrayList<StudySpaceModel> filteredList = new ArrayList<>();
                 // TODO: Do filter operations
-
-                // TODO: remove these
-                System.out.println(exploreViewModel.getText().getValue());
-                exploreViewModel.setText("Filter is making changes");
-                System.out.println(exploreViewModel.getText().getValue());
+                adapter.setStudySpaceModelList(filteredList);
+                Navigation.findNavController(getView()).navigate(R.id.action_navigation_filter_to_navigation_explore);
             }
         });
     }
