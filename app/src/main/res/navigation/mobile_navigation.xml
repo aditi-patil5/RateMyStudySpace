@@ -33,6 +33,9 @@
         <action
             android:id="@+id/action_navigation_explore_to_navigation_filter"
             app:destination="@id/navigation_filter" />
+        <action
+            android:id="@+id/action_navigation_explore_to_navigation_add"
+            app:destination="@id/navigation_add" />
     </fragment>
 
     <fragment
@@ -69,6 +72,29 @@
         tools:layout="@layout/fragment_filter" >
         <action
             android:id="@+id/action_navigation_filter_to_navigation_explore"
+            app:destination="@id/navigation_explore" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_add"
+        android:name="com.example.ratemystudyspace.ui.add.AddFragment"
+        android:label="Add"
+        tools:layout="@layout/fragment_add" >
+        <action
+            android:id="@+id/action_navigation_add_to_navigation_success"
+            app:destination="@id/navigation_success" />
+        <action
+            android:id="@+id/action_navigation_add_to_navigation_explore"
+            app:destination="@id/navigation_explore" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_success"
+        android:name="com.example.ratemystudyspace.ui.success.SuccessFragment"
+        android:label="Success"
+        tools:layout="@layout/fragment_success" >
+        <action
+            android:id="@+id/action_navigation_success_to_navigation_explore"
             app:destination="@id/navigation_explore" />
     </fragment>
 

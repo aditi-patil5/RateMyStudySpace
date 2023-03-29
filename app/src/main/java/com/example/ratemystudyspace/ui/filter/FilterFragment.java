@@ -102,7 +102,7 @@ public class FilterFragment extends Fragment {
                 filteredList.add(space);
                 continue;
             }
-            if(space.getRating() >= rating){
+            if((rating != 0.0) && (space.getRating() >= rating)){
                 filteredList.add(space);
                 continue;
             }
