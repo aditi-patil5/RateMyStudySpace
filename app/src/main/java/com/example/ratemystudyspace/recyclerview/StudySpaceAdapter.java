@@ -19,6 +19,12 @@ public class StudySpaceAdapter extends RecyclerView.Adapter<StudySpaceAdapter.My
 
     protected Context context;
     protected RecyclerViewInterface recyclerViewInterface;
+
+    // Allow the classes that filter the recycler view to change the list element by setting the filtered list
+    public void setStudySpaceModels(ArrayList<StudySpaceModel> studySpaceModels) {
+        this.studySpaceModels = studySpaceModels;
+    }
+
     protected ArrayList<StudySpaceModel> studySpaceModels;
 
     public StudySpaceAdapter(Context context, ArrayList<StudySpaceModel> studySpaceModels, RecyclerViewInterface recyclerViewInterface){

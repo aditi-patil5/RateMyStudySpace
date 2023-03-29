@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -27,6 +28,7 @@ import java.util.ArrayList;
 public class ExploreFragment extends Fragment implements RecyclerViewInterface {
 
     private FragmentExploreBinding binding;
+    private StudySpaceAdapter adapterView;
     private ArrayList<StudySpaceModel> studySpaceModels;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -44,8 +46,8 @@ public class ExploreFragment extends Fragment implements RecyclerViewInterface {
             studySpaceModels = new ArrayList<>();
             setUpStudySpaceModel();
         }
-        StudySpaceAdapter adapterView = new StudySpaceAdapter(context, studySpaceModels, this);
-        recyclerViewExplore.setAdapter(adapterView);
+        this.adapterView = new StudySpaceAdapter(context, studySpaceModels, this);
+        recyclerViewExplore.setAdapter(this.adapterView);
         recyclerViewExplore.setLayoutManager(new LinearLayoutManager(context));
 
 //        final TextView textView = binding.textNotifications;
@@ -86,6 +88,10 @@ public class ExploreFragment extends Fragment implements RecyclerViewInterface {
                 ((MainActivity) getActivity()).changeBottomNavigationTab(new FilterFragment());
             }
         });
+    }
+
+    public void setFilterdList(ArrayList<StudySpaceModel> filteredList){
+        this.adapterView.setStudySpaceModels(filteredList);
     }
 
     @Override

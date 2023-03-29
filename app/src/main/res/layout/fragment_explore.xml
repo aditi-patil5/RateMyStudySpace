@@ -12,9 +12,9 @@
         android:layout_width="379dp"
         android:layout_height="28dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="44dp"
         android:text="Explore Study Spaces"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintBottom_toTopOf="@+id/recycler_view"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,22 +22,18 @@
         android:id="@+id/goto_filter"
         android:layout_width="275dp"
         android:layout_height="41dp"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="70dp"
-        android:layout_marginEnd="68dp"
-        android:layout_marginBottom="620dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Filter"
+        app:layout_constraintBottom_toTopOf="@+id/recycler_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="Filter"/>
+        app:layout_constraintTop_toBottomOf="@+id/explore_page_title"
+        app:layout_constraintVertical_bias="0.666" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
-        android:layout_width="413dp"
-        android:layout_height="580dp"
-        android:layout_marginBottom="40dp"
+        android:layout_width="414dp"
+        android:layout_height="541dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="-1dp" />
+        tools:layout_editor_absoluteX="0dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
