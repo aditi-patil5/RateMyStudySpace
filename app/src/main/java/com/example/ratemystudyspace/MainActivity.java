@@ -3,6 +3,7 @@ package com.example.ratemystudyspace;
 import android.os.Bundle;
 
 import com.example.ratemystudyspace.databinding.ActivityMainBinding;
+import com.example.ratemystudyspace.ui.add.AddFragment;
 import com.example.ratemystudyspace.ui.explore.ExploreFragment;
 import com.example.ratemystudyspace.ui.favorites.FavoritesFragment;
 import com.example.ratemystudyspace.ui.filter.FilterFragment;
@@ -52,8 +53,6 @@ public class MainActivity extends AppCompatActivity {
             navView.setSelectedItemId(R.id.navigation_review);
         }
         else if(objType instanceof FilterFragment){
-
-            System.out.println("Hello");
             navView.setSelectedItemId(R.id.navigation_filter);
         }
 

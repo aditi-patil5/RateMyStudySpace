@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -21,6 +23,7 @@ import com.example.ratemystudyspace.recyclerview.RecyclerViewInterface;
 import com.example.ratemystudyspace.recyclerview.StudySpaceAdapter;
 import com.example.ratemystudyspace.StudySpaceModel;
 import com.example.ratemystudyspace.databinding.FragmentExploreBinding;
+import com.example.ratemystudyspace.ui.add.AddFragment;
 import com.example.ratemystudyspace.ui.filter.FilterFragment;
 
 import java.util.ArrayList;
@@ -79,13 +82,19 @@ public class ExploreFragment extends Fragment implements RecyclerViewInterface {
         arguments.putString("name", model.getName());
         arguments.putString("location", model.getLocation());
         Navigation.findNavController(getView()).navigate(R.id.action_navigation_explore_to_spaceOverview,arguments);
-
     }
     public void setOnClickEventForButtons(){
         binding.gotoFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ((MainActivity) getActivity()).changeBottomNavigationTab(new FilterFragment());
+            }
+        });
+
+        binding.gotoAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.action_navigation_explore_to_navigation_add);
             }
         });
     }
