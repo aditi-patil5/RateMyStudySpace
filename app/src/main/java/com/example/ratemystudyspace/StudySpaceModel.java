@@ -19,7 +19,44 @@ public class StudySpaceModel {
     private boolean outlets;
     private boolean whiteboards;
     private boolean isIndividual;
-    private String noiseLevel;
+    private boolean isQuiet;
+    private boolean isMedium;
+
+    private boolean isLoud;
+
+    private boolean hasWhiteboard;
+    private boolean hasOutlets;
+    private boolean hasNaturalLight;
+
+    public StudySpaceModel(String name, String location, float rating, int imageMain,
+                           ArrayList<String> reviews, boolean isLoud, boolean isMedium, boolean isQuiet,
+                           boolean isIndividual, boolean hasNaturalLight, boolean hasWhiteboard,
+                           boolean hasOutlets){
+        this.name = name;
+        this.location = location;
+        this.rating = rating;
+        this.imageMain = imageMain;
+        this.reviews = reviews;
+        this.isLoud = isLoud;
+        this.isMedium = isMedium;
+        this.isQuiet = isQuiet;
+        this.isIndividual = isIndividual;
+        this.hasWhiteboard = hasWhiteboard;
+        this.hasNaturalLight = hasNaturalLight;
+        this.hasOutlets = hasOutlets;
+    }
+
+    public boolean isQuiet() {
+        return isQuiet;
+    }
+
+    public boolean isMedium() {
+        return isMedium;
+    }
+
+    public boolean isLoud() {
+        return isLoud;
+    }
 
     public boolean isNaturalLight() {
         return naturalLight;
@@ -51,14 +88,6 @@ public class StudySpaceModel {
 
     public void setIndividual(boolean individual) {
         isIndividual = individual;
-    }
-
-    public String getNoiseLevel() {
-        return noiseLevel;
-    }
-
-    public void setNoiseLevel(String noiseLevel) {
-        this.noiseLevel = noiseLevel;
     }
 
     public void setName(String name) {
@@ -99,14 +128,6 @@ public class StudySpaceModel {
 
     public float getRating() {
         return rating;
-    }
-
-    public StudySpaceModel(String name, String location, float rating, int imageMain, ArrayList<String> reviews){
-        this.name = name;
-        this.location = location;
-        this.rating = rating;
-        this.imageMain = imageMain;
-        this.reviews = reviews;
     }
 
     public void addReview(String review){

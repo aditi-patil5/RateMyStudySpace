@@ -18,6 +18,7 @@ import com.example.ratemystudyspace.R;
 import com.example.ratemystudyspace.StudySpaceModel;
 import com.example.ratemystudyspace.databinding.FragmentFilterBinding;
 import com.example.ratemystudyspace.recyclerview.StudySpaceAdapter;
+import com.example.ratemystudyspace.ui.explore.ExploreFragment;
 import com.example.ratemystudyspace.ui.explore.ExploreViewModel;
 
 import java.util.ArrayList;
@@ -49,11 +50,58 @@ public class FilterFragment extends Fragment {
                 StudySpaceAdapter adapter = ((MainActivity) getActivity()).getExploreAdapter();
                 ArrayList<StudySpaceModel> allItems = adapter.getStudySpaceModelList();
                 ArrayList<StudySpaceModel> filteredList = new ArrayList<>();
-                // TODO: Do filter operations
+                applyFilters(allItems,filteredList);
                 adapter.setStudySpaceModelList(filteredList);
-                Navigation.findNavController(getView()).navigate(R.id.action_navigation_filter_to_navigation_explore);
+                ((MainActivity)getActivity()).changeBottomNavigationTab(new ExploreFragment());
             }
         });
+    }
+
+    private ArrayList<StudySpaceModel> applyFilters(ArrayList<StudySpaceModel> allData,ArrayList<StudySpaceModel> filteredList){
+        boolean loud = binding.filterNoiseOption1.isChecked();
+        boolean medium = binding.filterNoiseOption2.isChecked();
+        boolean quiet = binding.filterNoiseOption3.isChecked();
+        boolean groupStudy = binding.filterTypestudyOption1.isChecked();
+        boolean individualStudy = binding.filterTypestudyOption2.isChecked();
+        boolean naturalLight = binding.filterAmenityOption1.isChecked();
+        boolean outlet = binding.filterAmenityOption2.isChecked();
+        boolean whiteboard = binding.filterAmenityOption3.isChecked();
+
+        for(StudySpaceModel space : allData){
+            if(loud && space.isLoud()){
+                filteredList.add(space);
+                continue;
+            }
+            if(quiet &&  space.isQuiet()){
+                filteredList.add(space);
+                continue;
+            }
+            if(medium && space.isMedium()){
+                filteredList.add(space);
+                continue;
+            }
+            if(naturalLight && space.isNaturalLight()){
+                filteredList.add(space);
+                continue;
+            }
+            if(outlet && space.isOutlets()){
+                filteredList.add(space);
+                continue;
+            }
+            if(whiteboard && space.isWhiteboards()){
+                filteredList.add(space);
+                continue;
+            }
+            if(groupStudy && !space.isIndividual()){
+                filteredList.add(space);
+                continue;
+            }
+            if(individualStudy && space.isIndividual()){
+                filteredList.add(space);
+                continue;
+            }
+        }
+        return filteredList;
     }
 
 }

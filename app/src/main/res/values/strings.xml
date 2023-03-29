@@ -45,4 +45,47 @@
         <item>Great collaborative space</item>
     </string-array>
 
+    <array name="whiteboard">
+        <item>false</item>
+        <item>false</item>
+        <item>true</item>
+    </array>
+
+    <array name="outlets">
+        <item>true</item>
+        <item>false</item>
+        <item>true</item>
+    </array>
+
+    <array name="natural_light">
+        <item>true</item>
+        <item>false</item>
+        <item>false</item>
+    </array>
+
+    <array name="loud">
+        <item>false</item>
+        <item>false</item>
+        <item>true</item>
+    </array>
+
+    <array name="medium">
+        <item>false</item>
+        <item>true</item>
+        <item>false</item>
+    </array>
+
+    <array name="quiet">
+        <item>true</item>
+        <item>false</item>
+        <item>false</item>
+    </array>
+
+    <array name="is_individual">
+        <item>true</item>
+        <item>false</item>
+        <item>false</item>
+    </array>
+
+
 </resources>

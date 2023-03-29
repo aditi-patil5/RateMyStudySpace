@@ -1,5 +1,6 @@
 package com.example.ratemystudyspace.ui.explore;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Bundle;
@@ -21,7 +22,9 @@ import com.example.ratemystudyspace.recyclerview.StudySpaceAdapter;
 import com.example.ratemystudyspace.StudySpaceModel;
 import com.example.ratemystudyspace.databinding.FragmentExploreBinding;
 import com.example.ratemystudyspace.ui.filter.FilterFragment;
+import com.example.ratemystudyspace.ui.space.SpaceFragment;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -31,6 +34,8 @@ public class ExploreFragment extends Fragment implements RecyclerViewInterface {
     private StudySpaceAdapter adapterView;
     private ArrayList<StudySpaceModel> studySpaceModels;
 
+    private MainActivity mainActivity;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         ExploreViewModel exploreViewModel =
@@ -38,6 +43,10 @@ public class ExploreFragment extends Fragment implements RecyclerViewInterface {
 
         binding = FragmentExploreBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        if(mainActivity == null){
+            mainActivity = (MainActivity) getActivity();
+        }
 
         // Set up recycler view and StudySpaceFragment model
         Context context = getContext();
@@ -55,15 +64,13 @@ public class ExploreFragment extends Fragment implements RecyclerViewInterface {
         recyclerViewExplore.setAdapter(this.adapterView);
         recyclerViewExplore.setLayoutManager(new LinearLayoutManager(context));
 
-//        final TextView textView = binding.textNotifications;
-//        exploreViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         setOnClickEventForButtons();
         return root;
     }
 
     private void setUpAdapter(Context context){
         this.adapterView = new StudySpaceAdapter(context, studySpaceModels, this);
-        ((MainActivity) getActivity()).setExploreAdapter(adapterView);
+        mainActivity.setExploreAdapter(adapterView);
     }
 
     protected void setUpStudySpaceModel(){
@@ -72,6 +79,14 @@ public class ExploreFragment extends Fragment implements RecyclerViewInterface {
         String locations[] = getResources().getStringArray(R.array.location_list);
         String ratings[] = getResources().getStringArray(R.array.rating_list);
         TypedArray reviews=  getResources().obtainTypedArray(R.array.reviews_list);
+        TypedArray whiteboard = getResources().obtainTypedArray(R.array.whiteboard);
+        TypedArray outlets = getResources().obtainTypedArray(R.array.outlets);
+        TypedArray naturalLight = getResources().obtainTypedArray(R.array.natural_light);
+        TypedArray loud = getResources().obtainTypedArray(R.array.loud);
+        TypedArray medium = getResources().obtainTypedArray(R.array.medium);
+        TypedArray quiet = getResources().obtainTypedArray(R.array.quiet);
+        TypedArray isIndividual = getResources().obtainTypedArray(R.array.is_individual);
+
         for(int i =0; i < names.length; i++){
             int resId = reviews.getResourceId(i,-1);
             if(resId >= 0){
@@ -80,13 +95,22 @@ public class ExploreFragment extends Fragment implements RecyclerViewInterface {
                         locations[i],
                         Float.parseFloat(ratings[i]),
                         images[i],
-                        review));
+                        review,
+                        loud.getBoolean(i, false),
+                        medium.getBoolean(i, false),
+                        quiet.getBoolean(i, false),
+                        isIndividual.getBoolean(i, true),
+                        naturalLight.getBoolean(i, false),
+                        whiteboard.getBoolean(i, false),
+                        outlets.getBoolean(i, false)
+                ));
             }
         }
     }
 
     @Override
     public void onClick(int position) {
+        System.out.println("Setting up onclicks for recycler view");
         StudySpaceModel model = studySpaceModels.get(position);
         Bundle arguments = new Bundle();
         arguments.putInt("image",model.getImageMain());
@@ -94,21 +118,18 @@ public class ExploreFragment extends Fragment implements RecyclerViewInterface {
         arguments.putString("name", model.getName());
         arguments.putString("location", model.getLocation());
         arguments.putString("reviews", model.getReviewsString());
-        Navigation.findNavController(getView()).navigate(R.id.action_navigation_explore_to_spaceOverview,arguments);
+        mainActivity.changeBottomNavigationTab(new SpaceFragment(),arguments);
 
     }
     public void setOnClickEventForButtons(){
         binding.gotoFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainActivity) getActivity()).changeBottomNavigationTab(new FilterFragment());
+                mainActivity.changeBottomNavigationTab(new FilterFragment());
             }
         });
     }
 
-    public void setFilterdList(ArrayList<StudySpaceModel> filteredList){
-        this.adapterView.setStudySpaceModelList(filteredList);
-    }
 
     @Override
     public void onDestroyView() {

@@ -63,6 +63,13 @@ public class FavoritesFragment extends Fragment implements RecyclerViewInterface
         String locations[] = getResources().getStringArray(R.array.location_list);
         String ratings[] = getResources().getStringArray(R.array.rating_list);
         TypedArray reviews=  getResources().obtainTypedArray(R.array.reviews_list);
+        TypedArray whiteboard = getResources().obtainTypedArray(R.array.whiteboard);
+        TypedArray outlets = getResources().obtainTypedArray(R.array.outlets);
+        TypedArray naturalLight = getResources().obtainTypedArray(R.array.natural_light);
+        TypedArray loud = getResources().obtainTypedArray(R.array.loud);
+        TypedArray medium = getResources().obtainTypedArray(R.array.medium);
+        TypedArray quiet = getResources().obtainTypedArray(R.array.quiet);
+        TypedArray isIndividual = getResources().obtainTypedArray(R.array.is_individual);
 
         for(int i =0; i < names.length; i++){
             int resId = reviews.getResourceId(i,-1);
@@ -72,7 +79,14 @@ public class FavoritesFragment extends Fragment implements RecyclerViewInterface
                         locations[i],
                         Float.parseFloat(ratings[i]),
                         images[i],
-                        review));
+                        review,
+                        loud.getBoolean(i, false),
+                        medium.getBoolean(i, false),
+                        quiet.getBoolean(i, false),
+                        isIndividual.getBoolean(i, true),
+                        naturalLight.getBoolean(i, false),
+                        whiteboard.getBoolean(i, false),
+                        outlets.getBoolean(i, false)));
             }
         }
     }
