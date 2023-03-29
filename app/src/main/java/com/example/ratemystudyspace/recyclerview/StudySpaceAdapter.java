@@ -21,11 +21,15 @@ public class StudySpaceAdapter extends RecyclerView.Adapter<StudySpaceAdapter.My
     protected RecyclerViewInterface recyclerViewInterface;
 
     protected ArrayList<StudySpaceModel> studySpaceModels;
+    protected ArrayList<StudySpaceModel> backUpData;
 
     public StudySpaceAdapter(Context context, ArrayList<StudySpaceModel> studySpaceModels, RecyclerViewInterface recyclerViewInterface){
         this.context = context;
         this.studySpaceModels = studySpaceModels;
         this.recyclerViewInterface = recyclerViewInterface;
+        this.backUpData = new ArrayList<StudySpaceModel>();
+        backUpData.addAll(studySpaceModels);
+
     }
 
     @NonNull
@@ -81,5 +85,11 @@ public class StudySpaceAdapter extends RecyclerView.Adapter<StudySpaceAdapter.My
                 }
             });
         }
+    }
+
+    public void resetListToDefault() {
+        studySpaceModels.clear();
+        studySpaceModels.addAll(backUpData);
+        notifyDataSetChanged();
     }
 }

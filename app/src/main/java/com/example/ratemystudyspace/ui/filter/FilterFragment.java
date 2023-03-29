@@ -39,15 +39,16 @@ public class FilterFragment extends Fragment {
         binding = FragmentFilterBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         exploreViewModel = new ViewModelProvider(this).get(ExploreViewModel.class);
-        setOnClick();
+        setOnClickFilter();
         return root;
     }
 
-    public void setOnClick(){
+    public void setOnClickFilter(){
         binding.filterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 StudySpaceAdapter adapter = ((MainActivity) getActivity()).getExploreAdapter();
+                adapter.resetListToDefault();  // reset data to contain all the data (if we apply filter multiple times)
                 ArrayList<StudySpaceModel> allItems = adapter.getStudySpaceModelList();
                 ArrayList<StudySpaceModel> filteredList = new ArrayList<>();
                 applyFilters(allItems,filteredList);
@@ -66,6 +67,7 @@ public class FilterFragment extends Fragment {
         boolean naturalLight = binding.filterAmenityOption1.isChecked();
         boolean outlet = binding.filterAmenityOption2.isChecked();
         boolean whiteboard = binding.filterAmenityOption3.isChecked();
+        float rating = binding.ratingBar.getRating();
 
         for(StudySpaceModel space : allData){
             if(loud && space.isLoud()){
@@ -97,6 +99,10 @@ public class FilterFragment extends Fragment {
                 continue;
             }
             if(individualStudy && space.isIndividual()){
+                filteredList.add(space);
+                continue;
+            }
+            if(space.getRating() >= rating){
                 filteredList.add(space);
                 continue;
             }

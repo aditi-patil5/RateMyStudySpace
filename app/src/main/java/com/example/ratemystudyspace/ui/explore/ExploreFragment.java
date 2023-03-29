@@ -110,7 +110,7 @@ public class ExploreFragment extends Fragment implements RecyclerViewInterface {
 
     @Override
     public void onClick(int position) {
-        System.out.println("Setting up onclicks for recycler view");
+
         StudySpaceModel model = studySpaceModels.get(position);
         Bundle arguments = new Bundle();
         arguments.putInt("image",model.getImageMain());

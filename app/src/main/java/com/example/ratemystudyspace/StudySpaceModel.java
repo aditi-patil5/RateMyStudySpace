@@ -15,9 +15,6 @@ public class StudySpaceModel {
 
     private  ArrayList<String> reviews = new ArrayList<String>();
 
-    private boolean naturalLight;
-    private boolean outlets;
-    private boolean whiteboards;
     private boolean isIndividual;
     private boolean isQuiet;
     private boolean isMedium;
@@ -59,27 +56,27 @@ public class StudySpaceModel {
     }
 
     public boolean isNaturalLight() {
-        return naturalLight;
+        return hasNaturalLight;
     }
 
     public void setNaturalLight(boolean naturalLight) {
-        this.naturalLight = naturalLight;
+        this.hasNaturalLight = naturalLight;
     }
 
     public boolean isOutlets() {
-        return outlets;
+        return hasOutlets;
     }
 
     public void setOutlets(boolean outlets) {
-        this.outlets = outlets;
+        this.hasOutlets = outlets;
     }
 
     public boolean isWhiteboards() {
-        return whiteboards;
+        return hasWhiteboard;
     }
 
     public void setWhiteboards(boolean whiteboards) {
-        this.whiteboards = whiteboards;
+        this.hasWhiteboard = whiteboards;
     }
 
     public boolean isIndividual() {
