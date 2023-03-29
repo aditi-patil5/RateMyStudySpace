@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.example.ratemystudyspace.databinding.ActivityMainBinding;
 import com.example.ratemystudyspace.recyclerview.StudySpaceAdapter;
+import com.example.ratemystudyspace.ui.add.AddFragment;
 import com.example.ratemystudyspace.ui.explore.ExploreFragment;
 import com.example.ratemystudyspace.ui.favorites.FavoritesFragment;
 import com.example.ratemystudyspace.ui.filter.FilterFragment;
