@@ -8,15 +8,18 @@
 
 
     <ScrollView
-        android:layout_width="420dp"
-        android:layout_height="638dp"
+        android:id="@+id/scrollView3"
+        android:layout_width="401dp"
+        android:layout_height="612dp"
         android:layout_marginBottom="93dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.775">
 
         <LinearLayout
+            android:id="@+id/linearLayoutFilter"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -70,7 +73,9 @@
                 android:layout_margin="20dp"
                 android:numStars="5"
                 android:scaleX="1"
-                android:scaleY="1" />
+                android:scaleY="1"
+                android:clickable="true"
+                android:isIndicator="false"/>
 
             <TextView
                 android:id="@+id/Noiselevel"
@@ -136,9 +141,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="50dp"
         android:text="Filter"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/scrollView3"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

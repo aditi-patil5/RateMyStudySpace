@@ -9,6 +9,7 @@ import com.example.ratemystudyspace.ui.favorites.FavoritesFragment;
 import com.example.ratemystudyspace.ui.filter.FilterFragment;
 import com.example.ratemystudyspace.ui.home.HomeFragment;
 import com.example.ratemystudyspace.ui.review.ReviewFragment;
+import com.example.ratemystudyspace.ui.space.SpaceFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -54,13 +55,20 @@ public class MainActivity extends AppCompatActivity {
             navView.setSelectedItemId(R.id.navigation_review);
         }
         else if(objType instanceof FilterFragment){
-
-            System.out.println("Hello");
             navView.setSelectedItemId(R.id.navigation_filter);
         }
-
         else if(objType instanceof HomeFragment){
             System.out.println("Already on Homepage ");
+        }
+        else {
+            System.out.println("Invalid class type");
+        }
+    }
+
+    public void changeBottomNavigationTab(Object objType, Bundle args){
+        if(objType instanceof SpaceFragment){
+            NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
+            navController.navigate(R.id.action_navigation_explore_to_spaceOverview, args);
         }
         else {
             System.out.println("Invalid class type");
