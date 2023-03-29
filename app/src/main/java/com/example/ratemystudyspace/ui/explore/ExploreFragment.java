@@ -1,6 +1,7 @@
 package com.example.ratemystudyspace.ui.explore;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,7 @@ import com.example.ratemystudyspace.databinding.FragmentExploreBinding;
 import com.example.ratemystudyspace.ui.filter.FilterFragment;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ExploreFragment extends Fragment implements RecyclerViewInterface {
 
@@ -69,12 +71,17 @@ public class ExploreFragment extends Fragment implements RecyclerViewInterface {
         String names[] = getResources().getStringArray(R.array.name_list);
         String locations[] = getResources().getStringArray(R.array.location_list);
         String ratings[] = getResources().getStringArray(R.array.rating_list);
-
+        TypedArray reviews=  getResources().obtainTypedArray(R.array.reviews_list);
         for(int i =0; i < names.length; i++){
-            studySpaceModels.add(new StudySpaceModel(names[i],
-                    locations[i],
-                    Float.parseFloat(ratings[i]),
-                    images[i]));
+            int resId = reviews.getResourceId(i,-1);
+            if(resId >= 0){
+                ArrayList<String> review = new ArrayList<>(Arrays.asList(getResources().getStringArray(resId)));
+                studySpaceModels.add(new StudySpaceModel(names[i],
+                        locations[i],
+                        Float.parseFloat(ratings[i]),
+                        images[i],
+                        review));
+            }
         }
     }
 
@@ -86,6 +93,7 @@ public class ExploreFragment extends Fragment implements RecyclerViewInterface {
         arguments.putFloat("rating",model.getRating());
         arguments.putString("name", model.getName());
         arguments.putString("location", model.getLocation());
+        arguments.putString("reviews", model.getReviewsString());
         Navigation.findNavController(getView()).navigate(R.id.action_navigation_explore_to_spaceOverview,arguments);
 
     }

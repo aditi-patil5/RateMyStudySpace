@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-
     tools:context=".ui.space.SpaceFragment">
 
     <ScrollView
@@ -34,26 +33,24 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/addReview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Add Review +"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
-                    />
+                    android:text="Add Review +" />
 
                 <Button
                     android:id="@+id/addFavorites"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Add Favorites"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
-                    />
+                    android:text="Add Favorites" />
             </LinearLayout>
 
             <RatingBar
@@ -76,9 +73,23 @@
             <ImageView
                 android:id="@+id/image_space"
                 android:layout_width="346dp"
-                android:layout_height="257dp"
+                android:layout_height="200dp"
                 android:layout_margin="20dp"
                 android:src="@drawable/lind_hall" />
+
+            <TextView
+                android:id="@+id/reviews_space"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:text="Reviews" />
+
+            <ListView
+                android:id="@+id/review_list"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
 
         </LinearLayout>
     </ScrollView>

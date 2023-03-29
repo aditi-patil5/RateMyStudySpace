@@ -11,6 +11,7 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 
 import com.example.ratemystudyspace.MainActivity;
 import com.example.ratemystudyspace.R;
@@ -21,9 +22,13 @@ import com.example.ratemystudyspace.ui.favorites.FavoritesFragment;
 import com.example.ratemystudyspace.ui.review.ReviewFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class SpaceFragment extends Fragment {
 
     private FragmentSpaceOverviewBinding binding;
+    private ArrayAdapter<String> reviewAdapter;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -38,6 +43,11 @@ public class SpaceFragment extends Fragment {
         binding.titleSpace.setText(getArguments().getString("name"));
         binding.locationSpace.setText(getArguments().getString("location"));
         binding.ratingBar.setRating(getArguments().getFloat("rating"));
+        String[] reviewsArr = getArguments().getString("reviews").split(";");
+        ArrayList reviews = new ArrayList<>(Arrays.asList(reviewsArr));
+
+        reviewAdapter = new ArrayAdapter<>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, reviews);
+        binding.reviewList.setAdapter(reviewAdapter);
         setOnClickEventForButtons();
         return root;
     }
@@ -63,6 +73,5 @@ public class SpaceFragment extends Fragment {
                 ((MainActivity) getActivity()).changeBottomNavigationTab(new ReviewFragment());
             }
         });
-
     }
 }
