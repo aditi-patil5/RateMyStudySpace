@@ -101,16 +101,27 @@ public class StudySpaceModel {
         return rating;
     }
 
-    public StudySpaceModel(String name, String location, float rating, int imageMain){
+    public StudySpaceModel(String name, String location, float rating, int imageMain, ArrayList<String> reviews){
         this.name = name;
         this.location = location;
         this.rating = rating;
         this.imageMain = imageMain;
+        this.reviews = reviews;
     }
 
     public void addReview(String review){
         reviews.add(review);
     }
 
+    public String getReviewsString(){
+        StringBuilder strReview = new StringBuilder("");
+        for(int i = 0; i<reviews.size(); i++){
+            strReview.append(reviews.get(i));
+            if(i != reviews.size()-1){
+                strReview.append(";");
+            }
+        }
+        return strReview.toString();
+    }
 
 }

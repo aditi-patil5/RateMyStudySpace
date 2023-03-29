@@ -23,4 +23,26 @@
         <item>2.5</item>
     </string-array>
 
+    <array name="reviews_list">
+        <item>@array/item1</item>
+        <item>@array/item2</item>
+        <item>@array/item3</item>
+    </array>
+
+    <string-array name="item1">
+        <item>The seating area is great!</item>
+        <item>There are plenty of outlet!</item>
+        <item>Very little natural light :(</item>
+    </string-array>
+    <string-array name="item2">
+        <item>COFFEE!!</item>
+        <item>The food is great when you\'re studying</item>
+        <item>Less seats available</item>
+    </string-array>
+    <string-array name="item3">
+        <item>Very open and spacious</item>
+        <item>Quite noisy sometimes due to events</item>
+        <item>Great collaborative space</item>
+    </string-array>
+
 </resources>
