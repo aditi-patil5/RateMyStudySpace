@@ -4,4 +4,88 @@
     <string name="title_home">Home</string>
     <string name="title_favorites">Favorites</string>
     <string name="title_explore">Explore</string>
+
+    <string-array name="name_list">
+        <item>Taylor Center</item>
+        <item>Wise Owl Cafe</item>
+        <item>Toaster</item>
+    </string-array>
+
+    <string-array name="location_list">
+        <item>Lind Hall, MN 55455</item>
+        <item>Walter Library, MN 55345</item>
+        <item>Walter Library, MN 55345</item>
+    </string-array>
+
+    <string-array name="rating_list">
+        <item>4.5</item>
+        <item>3.5</item>
+        <item>2.5</item>
+    </string-array>
+
+    <array name="reviews_list">
+        <item>@array/item1</item>
+        <item>@array/item2</item>
+        <item>@array/item3</item>
+    </array>
+
+    <string-array name="item1">
+        <item>The seating area is great!</item>
+        <item>There are plenty of outlet!</item>
+        <item>Very little natural light :(</item>
+    </string-array>
+    <string-array name="item2">
+        <item>COFFEE!!</item>
+        <item>The food is great when you\'re studying</item>
+        <item>Less seats available</item>
+    </string-array>
+    <string-array name="item3">
+        <item>Very open and spacious</item>
+        <item>Quite noisy sometimes due to events</item>
+        <item>Great collaborative space</item>
+    </string-array>
+
+    <array name="whiteboard">
+        <item>false</item>
+        <item>false</item>
+        <item>true</item>
+    </array>
+
+    <array name="outlets">
+        <item>true</item>
+        <item>false</item>
+        <item>true</item>
+    </array>
+
+    <array name="natural_light">
+        <item>true</item>
+        <item>false</item>
+        <item>false</item>
+    </array>
+
+    <array name="loud">
+        <item>false</item>
+        <item>false</item>
+        <item>true</item>
+    </array>
+
+    <array name="medium">
+        <item>false</item>
+        <item>true</item>
+        <item>false</item>
+    </array>
+
+    <array name="quiet">
+        <item>true</item>
+        <item>false</item>
+        <item>false</item>
+    </array>
+
+    <array name="is_individual">
+        <item>true</item>
+        <item>false</item>
+        <item>false</item>
+    </array>
+
+
 </resources>

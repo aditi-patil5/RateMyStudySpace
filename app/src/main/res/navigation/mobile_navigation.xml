@@ -15,11 +15,91 @@
         android:id="@+id/navigation_favorites"
         android:name="com.example.ratemystudyspace.ui.favorites.FavoritesFragment"
         android:label="@string/title_favorites"
-        tools:layout="@layout/fragment_favorites" />
+        tools:layout="@layout/fragment_favorites" >
+        <action
+            android:id="@+id/action_navigation_favorites_to_spaceOverview"
+            app:destination="@id/spaceOverview" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_explore"
         android:name="com.example.ratemystudyspace.ui.explore.ExploreFragment"
         android:label="@string/title_explore"
-        tools:layout="@layout/fragment_explore" />
+        tools:layout="@layout/fragment_explore" >
+        <action
+            android:id="@+id/action_navigation_explore_to_spaceOverview"
+            android:label="@string/title_explore"
+            app:destination="@id/spaceOverview" />
+        <action
+            android:id="@+id/action_navigation_explore_to_navigation_filter"
+            app:destination="@id/navigation_filter" />
+        <action
+            android:id="@+id/action_navigation_explore_to_navigation_add"
+            app:destination="@id/navigation_add" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/spaceOverview"
+        android:name="com.example.ratemystudyspace.ui.space.SpaceFragment"
+        android:label="fragment_space_overview"
+        tools:layout="@layout/fragment_space_overview" >
+        <action
+            android:id="@+id/action_spaceOverview_to_navigation_explore2"
+            app:popUpTo="@+id/navigation_explore"
+            app:popUpToInclusive="true"
+            app:destination="@id/navigation_explore" />
+        <action
+            android:id="@+id/action_spaceOverview_to_navigation_favorites"
+            app:popUpTo="@+id/navigation_explore"
+            app:popUpToInclusive="true"
+            app:destination="@id/navigation_favorites"/>
+        <action
+            android:id="@+id/action_spaceOverview_to_navigation_review"
+            app:destination="@id/navigation_review" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_review"
+        android:name="com.example.ratemystudyspace.ui.review.ReviewFragment"
+        android:label="Review"
+        tools:layout="@layout/fragment_review" >
+        <action
+            android:id="@+id/action_navigation_review_to_navigation_space_overview"
+            app:destination="@id/spaceOverview" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_filter"
+        android:name="com.example.ratemystudyspace.ui.filter.FilterFragment"
+        android:label="Filter"
+        tools:layout="@layout/fragment_filter" >
+        <action
+            android:id="@+id/action_navigation_filter_to_navigation_explore"
+            app:destination="@id/navigation_explore" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_add"
+        android:name="com.example.ratemystudyspace.ui.add.AddFragment"
+        android:label="Add"
+        tools:layout="@layout/fragment_add" >
+        <action
+            android:id="@+id/action_navigation_add_to_navigation_success"
+            app:destination="@id/navigation_success" />
+        <action
+            android:id="@+id/action_navigation_add_to_navigation_explore"
+            app:destination="@id/navigation_explore" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_success"
+        android:name="com.example.ratemystudyspace.ui.success.SuccessFragment"
+        android:label="Success"
+        tools:layout="@layout/fragment_success" >
+        <action
+            android:id="@+id/action_navigation_success_to_navigation_explore"
+            app:destination="@id/navigation_explore" />
+    </fragment>
+
+
 </navigation>

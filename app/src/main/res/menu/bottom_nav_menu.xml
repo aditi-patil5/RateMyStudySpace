@@ -15,5 +15,15 @@
         android:id="@+id/navigation_explore"
         android:icon="@drawable/baseline_search_24"
         android:title="@string/title_explore" />
+    <item
+        android:id="@+id/navigation_review"
+        android:icon="@drawable/baseline_search_24"
+        android:title="@string/title_explore"
+        android:visible="false"/>
+    <item
+        android:id="@+id/navigation_filter"
+        android:icon="@drawable/baseline_search_24"
+        android:title="Filter"
+        android:visible="false"/>
 
 </menu>
