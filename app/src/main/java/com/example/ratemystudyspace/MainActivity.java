@@ -69,7 +69,11 @@ public class MainActivity extends AppCompatActivity {
     public void changeBottomNavigationTab(Object objType, Bundle args){
         if(objType instanceof SpaceFragment){
             NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
-            navController.navigate(R.id.action_navigation_explore_to_spaceOverview, args);
+            navController.navigate(R.id.spaceOverview, args);
+        }
+        else if(objType instanceof ReviewFragment){
+            NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
+            navController.navigate(R.id.navigation_review,args);
         }
         else {
             System.out.println("Invalid class type");

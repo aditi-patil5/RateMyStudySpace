@@ -30,6 +30,8 @@ public class SpaceFragment extends Fragment {
     private FragmentSpaceOverviewBinding binding;
     private ArrayAdapter<String> reviewAdapter;
 
+    private Bundle args;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -45,6 +47,13 @@ public class SpaceFragment extends Fragment {
         binding.ratingBar.setRating(getArguments().getFloat("rating"));
         String[] reviewsArr = getArguments().getString("reviews").split(";");
         ArrayList reviews = new ArrayList<>(Arrays.asList(reviewsArr));
+
+        args = new Bundle();
+        args.putInt("image",getArguments().getInt("image"));
+        args.putString("name",getArguments().getString("name" ));
+        args.putString("location",getArguments().getString("location"));
+        args.putFloat("rating", getArguments().getFloat("rating"));
+        args.putString("reviews",getArguments().getString("reviews"));
 
         reviewAdapter = new ArrayAdapter<>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, reviews);
         binding.reviewList.setAdapter(reviewAdapter);
@@ -70,7 +79,7 @@ public class SpaceFragment extends Fragment {
         binding.addReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainActivity) getActivity()).changeBottomNavigationTab(new ReviewFragment());
+                ((MainActivity) getActivity()).changeBottomNavigationTab(new ReviewFragment(),args);
             }
         });
     }

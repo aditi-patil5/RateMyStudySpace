@@ -63,6 +63,9 @@
         android:name="com.example.ratemystudyspace.ui.review.ReviewFragment"
         android:label="Review"
         tools:layout="@layout/fragment_review" >
+        <action
+            android:id="@+id/action_navigation_review_to_navigation_space_overview"
+            app:destination="@id/spaceOverview" />
     </fragment>
 
     <fragment
