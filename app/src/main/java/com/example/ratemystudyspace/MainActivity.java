@@ -1,4 +1,5 @@
 package com.example.ratemystudyspace;
+import java.util.HashSet;
 
 import android.os.Bundle;
 
@@ -19,8 +20,11 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.ratemystudyspace.databinding.ActivityMainBinding;
+
 public class MainActivity extends AppCompatActivity {
 
+    private HashSet<String> favoriteStudySpaces = new HashSet<>();
     private ActivityMainBinding binding;
     private BottomNavigationView navView;
 
@@ -43,7 +47,13 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);
 
     }
+    public void addToFavorites(String studySpaceId) {
+        favoriteStudySpaces.add(studySpaceId);
+    }
 
+    public HashSet<String> getFavoriteStudySpaces() {
+        return favoriteStudySpaces;
+    }
     public void changeBottomNavigationTab(Object objType){
         if(objType instanceof ExploreFragment){
             navView.setSelectedItemId(R.id.navigation_explore);

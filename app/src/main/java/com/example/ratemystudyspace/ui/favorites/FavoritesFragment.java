@@ -25,6 +25,7 @@ import com.example.ratemystudyspace.ui.explore.ExploreFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 
 public class FavoritesFragment extends Fragment implements RecyclerViewInterface {
 
@@ -49,6 +50,14 @@ public class FavoritesFragment extends Fragment implements RecyclerViewInterface
             studySpaceModels = new ArrayList<>();
             setUpStudySpaceModel();
         }
+
+        if (getArguments() != null) {
+            StudySpaceModel newFavorite = (StudySpaceModel) getArguments().getSerializable("newFavorite");
+            if (newFavorite != null && !studySpaceModels.contains(newFavorite)) {
+                studySpaceModels.add(newFavorite);
+            }
+        }
+
         StudySpaceAdapter adapterView = new StudySpaceAdapter(context, studySpaceModels, this);
         recyclerViewFavorites.setAdapter(adapterView);
         recyclerViewFavorites.setLayoutManager(new LinearLayoutManager(context));
@@ -58,6 +67,11 @@ public class FavoritesFragment extends Fragment implements RecyclerViewInterface
     }
 
     protected void setUpStudySpaceModel(){
+        HashSet<String> favoriteStudySpaces = ((MainActivity) getActivity()).getFavoriteStudySpaces();
+        if (favoriteStudySpaces.isEmpty()) {
+            return;
+        }
+
         int[] images = {R.drawable.lind_hall,R.drawable.wise_owl_cafe,R.drawable.toaster};
         String names[] = getResources().getStringArray(R.array.name_list);
         String locations[] = getResources().getStringArray(R.array.location_list);
@@ -71,14 +85,18 @@ public class FavoritesFragment extends Fragment implements RecyclerViewInterface
         TypedArray quiet = getResources().obtainTypedArray(R.array.quiet);
         TypedArray isIndividual = getResources().obtainTypedArray(R.array.is_individual);
 
-        for(int i =0; i < names.length; i++){
+        for (int i = 0; i < names.length; i++){
+            if(!favoriteStudySpaces.contains(names[i])){
+                continue;
+            }
+            int imageResourceId = images[i];
             int resId = reviews.getResourceId(i,-1);
             if(resId >= 0) {
                 ArrayList<String> review = new ArrayList<>(Arrays.asList(getResources().getStringArray(resId)));
                 studySpaceModels.add(new StudySpaceModel(names[i],
                         locations[i],
                         Float.parseFloat(ratings[i]),
-                        images[i],
+                        imageResourceId,
                         review,
                         loud.getBoolean(i, false),
                         medium.getBoolean(i, false),

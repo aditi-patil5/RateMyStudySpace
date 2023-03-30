@@ -71,6 +71,8 @@ public class SpaceFragment extends Fragment {
         binding.addFavorites.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String studySpaceName = getArguments().getString("name"); // Assuming image resource ID is unique for each study space
+                ((MainActivity) getActivity()).addToFavorites(studySpaceName);
                 ((MainActivity) getActivity()).changeBottomNavigationTab(new FavoritesFragment());
             }
         });
