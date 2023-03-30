@@ -9,9 +9,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
+import android.widget.SearchView;
 
 import com.example.ratemystudyspace.MainActivity;
 import com.example.ratemystudyspace.R;
@@ -51,14 +55,45 @@ public class FilterFragment extends Fragment {
                 adapter.resetListToDefault();  // reset data to contain all the data (if we apply filter multiple times)
                 ArrayList<StudySpaceModel> allItems = adapter.getStudySpaceModelList();
                 ArrayList<StudySpaceModel> filteredList = new ArrayList<>();
-                applyFilters(allItems,filteredList);
+                ArrayList<StudySpaceModel> searchFilter = new ArrayList<>();
+
+                applySearchFilter(allItems, searchFilter);
+
+                if (searchFilter.size() != 0){
+                    applyFilters(searchFilter,filteredList);
+                }
+                else{
+                    applyFilters(allItems,filteredList);
+                }
+
                 adapter.setStudySpaceModelList(filteredList);
                 ((MainActivity)getActivity()).changeBottomNavigationTab(new ExploreFragment());
             }
         });
     }
 
-    private ArrayList<StudySpaceModel> applyFilters(ArrayList<StudySpaceModel> allData,ArrayList<StudySpaceModel> filteredList){
+
+    private ArrayList<StudySpaceModel> applySearchFilter(ArrayList<StudySpaceModel> allData,ArrayList<StudySpaceModel> filteredList){
+        SearchView searchView = binding.filterSearch;
+        String query = searchView.getQuery().toString();
+
+
+        if (query == null || query.length() == 0){
+            filteredList = allData;
+        }
+        else{
+            String filterPattern = query.toLowerCase().trim();
+
+            for (StudySpaceModel studySpaceModel : allData){
+                if (studySpaceModel.getName().toLowerCase().contains(filterPattern))
+                    filteredList.add(studySpaceModel);
+            }
+        }
+        return filteredList;
+    }
+
+
+private ArrayList<StudySpaceModel> applyFilters(ArrayList<StudySpaceModel> allData,ArrayList<StudySpaceModel> filteredList){
         boolean loud = binding.filterNoiseOption1.isChecked();
         boolean medium = binding.filterNoiseOption2.isChecked();
         boolean quiet = binding.filterNoiseOption3.isChecked();
@@ -105,6 +140,10 @@ public class FilterFragment extends Fragment {
             if((rating != 0.0) && (space.getRating() >= rating)){
                 filteredList.add(space);
                 continue;
+            }
+            if (!loud && !quiet && !medium && !naturalLight && !outlet && !whiteboard && !groupStudy && !individualStudy && rating == 0.0){
+                filteredList.addAll(allData);
+                return filteredList;
             }
         }
         return filteredList;
